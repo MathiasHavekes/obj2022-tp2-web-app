@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using obj2022_tp2_web_api.DataServices;
 using obj2022_tp2_web_api.Models.Dtos;
 
 namespace obj2022_tp2_web_api.Controllers
@@ -7,31 +8,30 @@ namespace obj2022_tp2_web_api.Controllers
     [Route("tomato")]
     public class ChartController : ControllerBase
     {
-        private HttpClient httpClient;
+        ConstantsDataService constantsDS;
+        DistanceTemperatureDataService distanceTemperatureDS;
         public ChartController()
         {
-            httpClient = new HttpClient();
+            constantsDS = new ConstantsDataService();
+            distanceTemperatureDS = new DistanceTemperatureDataService();
         }
 
         [HttpGet("chart/details")]
         public async Task<IEnumerable<ChartDto>> GetChartDetails()
         {
-            var chart = new List<ChartDto>();
-            var path = "https://obj2022-iot-http-trigger20220511163325.azurewebsites.net/api/GetAllDistanceTemperature?code=8u7D40vuD_sFShoCyjhOyRunuNVJtBhkP1J_iq7KAKcWAzFuDh8wiQ==";
-            HttpResponseMessage response = await httpClient.GetAsync(path);
-            if (response.IsSuccessStatusCode)
+            var constant = await constantsDS.GetLastConstantEntryAsync();
+            var distanceTemperatureList = await distanceTemperatureDS.GetAllDistanceTemperatureAsync();
+            List<ChartDto> chartDetails = new List<ChartDto>();
+            foreach (var distanceTemperature in distanceTemperatureList)
             {
-                Console.WriteLine(response.Content);
-                chart = await response.Content.ReadFromJsonAsync<List<ChartDto>>()
-                    ?? chart;
+                chartDetails.Add(new ChartDto
+                {
+                    EventDate = distanceTemperature.EventDate,
+                    Temperature = distanceTemperature.Temperature,
+                    Percentage = Utils.CastValue((int)distanceTemperature.Distance, 0, 100, (int)constant.MinDistance, (int)constant.MaxDistance)
+                });
             }
-            return chart;
-            //var test = new ChartDto();
-            //test.Percentage = 100;
-            //test.Temperature = 62;
-            //test.EventDate = DateTime.Now;
-
-            //return new List<ChartDto>() { test };
+            return chartDetails;
         }
     }
 }
