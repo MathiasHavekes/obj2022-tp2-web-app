@@ -50,6 +50,7 @@ export class ChartComponent implements OnInit {
 
   setNewEndDate(newEndDate: any) {
     this.chartFilters.end = newEndDate.value;
+    this.startMaxDate = this.chartFilters.end;
     this.loadChartDetails();
   }
 
