@@ -5,6 +5,40 @@
   <mat-card-title>
     Graphique
   </mat-card-title>
+
+  <div class="date-range-picker">
+    <h3 class="filter-title">Filtres :</h3>
+    <mat-form-field 
+      class="date-range-element"
+    >
+      <input
+        matInput
+        [min]="startMinDate"
+        [max]="startMaxDate"
+        [matDatepicker]="startPicker"
+        placeholder="Date de début"
+        (dateChange)="setNewStartDate($event)"
+      >
+      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field 
+      class="date-range-element"
+    >
+      <input
+        matInput
+        [min]="endMinDate"
+        [max]="endMaxDate"
+        [matDatepicker]="endPicker"
+        placeholder="Date de fin"
+        (dateChange)="setNewStartDate($event)"
+      >
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
   <mat-card-content>
     <highcharts-chart 
       [Highcharts]="Highcharts"

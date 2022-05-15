@@ -1,0 +1,15 @@
+.date-range-picker {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .filter-title {
+    margin-bottom: .3em;
+  }
+
+  .date-range-element {
+    margin-left: 1em;
+  }
+}

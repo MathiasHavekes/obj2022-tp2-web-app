@@ -13,6 +13,8 @@ import { InfoService } from './info.service';
 export class InfoComponent implements OnInit {
   infoDetails: InfoDto | undefined;
 
+  progressBarBuffer = 100;
+
   constructor(
     private readonly infoService: InfoService,
   ) { }

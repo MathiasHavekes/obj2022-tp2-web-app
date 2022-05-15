@@ -11,15 +11,22 @@ import { ChartService } from './chart.service';
 })
 export class ChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  updateFlag: boolean = false;
+
+  updateFlag = false;
+
+  startMinDate = new Date(2022, 0, 1);
+  startMaxDate = new Date();
+
+  endMinDate = new Date();
+  endMaxDate = new Date(2022, 12, 31);
 
   chartOptions: Highcharts.Options | undefined;
 
   chartDetails: ChartDto[] = [];
 
   chartFilters = new ChartFilters(
-    new Date(),
-    new Date(),
+    this.startMinDate,
+    this.endMaxDate,
   ) 
   
   constructor(
@@ -30,6 +37,16 @@ export class ChartComponent implements OnInit {
     this.loadChartDetails();
   }
 
+  setNewStartDate(newStartDate: any) {
+    this.chartFilters.start = newStartDate.value;
+    this.loadChartDetails();
+  }
+
+  setNewEndtDate(newEndDate: any) {
+    this.chartFilters.end = newEndDate.value;
+    this.loadChartDetails();
+  }
+
   private loadChartDetails() {
     this.chartService
       .getChartDetails(this.chartFilters)
@@ -37,6 +54,8 @@ export class ChartComponent implements OnInit {
         this.chartDetails = response;
         this.buildChartOptions();
       });
+
+    this.updateFlag = true;
   }
 
   private buildChartOptions() {
