@@ -6,6 +6,10 @@
     Graphique
   </mat-card-title>
 
+  <mat-card-subtitle>
+    Température et pourcentage d'ouverture en fonction du temps
+  </mat-card-subtitle>
+
   <div class="date-range-picker">
     <h3 class="filter-title">Filtres :</h3>
     <mat-form-field 
@@ -40,12 +44,11 @@
   </div>
 
   <mat-card-content>
-    <highcharts-chart 
+    <highcharts-chart
+      class="chart"
       [Highcharts]="Highcharts"
       [options]="chartOptions"
       [(update)]="updateFlag"
-
-      style="width: 100%; height: 400px; display: block;"
     ></highcharts-chart>
   </mat-card-content>
 </mat-card>

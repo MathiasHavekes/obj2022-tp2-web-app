@@ -73,7 +73,7 @@ export class ChartComponent implements OnInit {
       yAxis: [
         {
           title:{
-            text: 'Temperature °C',
+            text: 'Température °C',
           },
         },
         {
@@ -81,7 +81,7 @@ export class ChartComponent implements OnInit {
             text: 'Pourcentage d\'ouverture %',
           },
           opposite: true,
-        }
+        },
       ],
       tooltip: {
         shared: true,
@@ -89,7 +89,7 @@ export class ChartComponent implements OnInit {
       },
       series: [
         {
-          name: 'Temperature',
+          name: 'Température',
           type: 'line',
           yAxis: 0,
           data: this.chartDetails.map(c => c.temperature),
@@ -106,7 +106,7 @@ export class ChartComponent implements OnInit {
             valueSuffix:" %",
           },
        },
-      ]
+      ],
    };
   }
 }
