@@ -20,6 +20,7 @@ namespace obj2022_tp2_web_api.Controllers
             [FromBody] ControlDto newControls
         )
         {
+
             using (var client = ServiceClient.CreateFromConnectionString(ConnectionString))
             {
                 var control = new

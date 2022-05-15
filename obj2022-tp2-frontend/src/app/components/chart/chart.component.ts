@@ -3,6 +3,7 @@ import * as Highcharts from 'highcharts';
 import { ChartFilters } from 'src/app/models/filters/date-filter.model';
 import { ChartDto } from 'src/app/models/chartDto.model';
 import { ChartService } from './chart.service';
+import { constants } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-chart',
@@ -35,6 +36,10 @@ export class ChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadChartDetails();
+    
+    setInterval(()=> { 
+      this.loadChartDetails() }, 
+      constants.timeBetweenRealoads);
   }
 
   setNewStartDate(newStartDate: any) {
@@ -59,6 +64,8 @@ export class ChartComponent implements OnInit {
   }
 
   private buildChartOptions() {
+    this.chartOptions = undefined;
+
     this.chartOptions = {   
       chart: {
          type: 'spline',

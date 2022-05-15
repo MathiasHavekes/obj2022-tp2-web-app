@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { constants } from 'src/app/constants/app.constants';
 import { ControlState } from 'src/app/models/enums/control-state.enum';
 import { Direction } from 'src/app/models/enums/direction.enum';
 import { InfoDto } from 'src/app/models/infoDto.model';
@@ -20,10 +21,18 @@ export class InfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadInfoDetails();
+
+    setInterval(()=> { 
+      this.loadInfoDetails() }, 
+      constants.timeBetweenRealoads);
+  }
+
+  private loadInfoDetails() {
     this.infoService
       .getInfoDetails()
       .subscribe(result => 
-        this.infoDetails = result);
+        this.infoDetails = result);    
   }
 
   getStateName(state: ControlState) {
