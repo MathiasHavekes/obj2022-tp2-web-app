@@ -18,8 +18,8 @@ export class ChartComponent implements OnInit {
   startMinDate = new Date(2022, 0, 1);
   startMaxDate = new Date();
 
-  endMinDate = new Date();
-  endMaxDate = new Date(2022, 12, 31);
+  endMinDate = this.startMinDate;
+  endMaxDate = new Date(2022, 11, 31);
 
   chartOptions: Highcharts.Options | undefined;
 
@@ -44,10 +44,11 @@ export class ChartComponent implements OnInit {
 
   setNewStartDate(newStartDate: any) {
     this.chartFilters.start = newStartDate.value;
+    this.endMinDate = this.chartFilters.start;
     this.loadChartDetails();
   }
 
-  setNewEndtDate(newEndDate: any) {
+  setNewEndDate(newEndDate: any) {
     this.chartFilters.end = newEndDate.value;
     this.loadChartDetails();
   }

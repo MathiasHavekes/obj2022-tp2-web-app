@@ -1,11 +1,11 @@
 export interface DateRange {
-  start: Date | undefined,
-  end: Date | undefined,
+  start: Date,
+  end: Date,
 }
 
 export class ChartFilters implements DateRange {
-  start: Date | undefined;
-  end: Date | undefined;
+  start: Date;
+  end: Date;
 
   constructor(start: Date, end: Date) {
     this.start = start;

@@ -36,7 +36,7 @@
           [max]="endMaxDate"
           [matDatepicker]="endPicker"
           placeholder="Date de fin"
-          (dateChange)="setNewStartDate($event)"
+          (dateChange)="setNewEndDate($event)"
         >
         <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
         <mat-datepicker #endPicker></mat-datepicker>

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using obj2022_tp2_web_api.DataServices;
+using obj2022_tp2_web_api.Models;
 using obj2022_tp2_web_api.Models.Dtos;
 
 namespace obj2022_tp2_web_api.Controllers
@@ -18,7 +19,9 @@ namespace obj2022_tp2_web_api.Controllers
         }
 
         [HttpGet("chart/details")]
-        public async Task<IEnumerable<ChartDto>> GetChartDetails()
+        public async Task<IEnumerable<ChartDto>> GetChartDetails(
+            DateTime start,
+            DateTime end)
         {
             var constant = await constantsDS.GetLastConstantEntryAsync();
             var distanceTemperatureList = await distanceTemperatureDS.GetAllDistanceTemperatureAsync();
@@ -35,6 +38,15 @@ namespace obj2022_tp2_web_api.Controllers
                 });
             }
 
+            chartDetails = chartDetails
+                .Where(chartDetail => chartDetail.EventDate > start)
+                .Where(chartDetail => chartDetail.EventDate < end)
+                .ToList();
+
+            chartDetails = chartDetails
+                .OrderBy(chartDetail => chartDetail.EventDate)
+                .ToList();
+            
             return chartDetails;
         }
     }

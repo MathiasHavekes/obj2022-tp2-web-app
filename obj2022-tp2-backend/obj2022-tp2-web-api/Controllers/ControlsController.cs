@@ -10,8 +10,6 @@ namespace obj2022_tp2_web_api.Controllers
     [Route("tomato")]
     public class ControlsController : ControllerBase
     {
-        private const string IotHubUri = "iotObjectHub.azure-devices.net";
-        private const string DeviceKey = "KyNxXceKfSnO/wiQM9hG8mzEjikB4Ytb3/MvvGhxn6Q=";
         private const string ConnectionString = "HostName=iotObjectHub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=nECnOMEb2L1BDBN4owfKN3Y/NXG9VbJrxtHVho4bz7Y=";
         private const string DeviceId = "tempsensor";
 
