@@ -8,9 +8,9 @@ namespace obj2022_tp2_web_api.Enums
         Automatique,
         [EnumMember(Value = "manuel")]
         Manuel,
-        [EnumMember(Value = "fermer_porte")]
-        FermerPorte,
         [EnumMember(Value = "ouvrir_porte")]
         OuvrirPorte,
+        [EnumMember(Value = "fermer_porte")]
+        FermerPorte,
     }
 }
