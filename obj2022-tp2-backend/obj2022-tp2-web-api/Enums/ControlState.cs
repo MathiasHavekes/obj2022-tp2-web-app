@@ -1,10 +1,16 @@
-﻿namespace obj2022_tp2_web_api.Enums
+﻿using System.Runtime.Serialization;
+
+namespace obj2022_tp2_web_api.Enums
 {
     public enum ControlState
     {
-        Automatic,
+        [EnumMember(Value = "automatique")]
+        Automatique,
+        [EnumMember(Value = "manuel")]
         Manuel,
-        OpenDoor,
-        CloseDoor,
+        [EnumMember(Value = "fermer_porte")]
+        FermerPorte,
+        [EnumMember(Value = "ouvrir_porte")]
+        OuvrirPorte,
     }
 }
