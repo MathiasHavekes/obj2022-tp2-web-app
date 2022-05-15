@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { constants } from 'src/app/constants/app.constants';
 import { AlertDto } from 'src/app/models/alertDto.model';
 import { AlertService } from './alert.service';
 
@@ -20,15 +21,26 @@ export class AlertComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadAlertDetails()
+
+    setInterval(()=> { 
+      this.loadAlertDetails() }, 
+      constants.timeBetweenRealoads);
+  }
+
+  private loadAlertDetails() {
     this.alertService
       .getAlertDetails()
       .subscribe(result => {
         this.alertDetails = result;
         this.checkIfAlertNeeded();
-      });
+    });
   }
 
   private checkIfAlertNeeded() {
+    this.isTooMuchOpen = false;
+    this.isNotEnoughOpen = false;
+
     if(!this.alertDetails) return;
 
     const actual = this.alertDetails.actualPercentage;
@@ -36,8 +48,8 @@ export class AlertComponent implements OnInit {
 
     if(actual < (expected - acceptedRange)) {
       this.isNotEnoughOpen = true;
-    } else if(actual > (expected - acceptedRange)) {
-      this.isNotEnoughOpen = true;
+    } else if(actual > (expected + acceptedRange)) {
+      this.isTooMuchOpen = true;
     }
   }
 }

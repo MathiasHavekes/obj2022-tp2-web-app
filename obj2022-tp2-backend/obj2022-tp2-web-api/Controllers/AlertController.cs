@@ -24,10 +24,10 @@ namespace obj2022_tp2_web_api.Controllers
             var distanceTemperature = await distanceTemperatureDS.GetLastDistanceTemperatureEntryAsync();
 
             var expectedDistance = Utils.CastValue(
-                (int)distanceTemperature.Temperature, 
+                (int)distanceTemperature.Temperature,
                 (int)constant.MinDistance,
-                (int)constant.MaxDistance, 
-                (int)constant.MinTemperature, 
+                (int)constant.MaxDistance,
+                (int)constant.MinTemperature,
                 (int)constant.MaxTemperature);
             
             AlertDto alertDto = new AlertDto()
