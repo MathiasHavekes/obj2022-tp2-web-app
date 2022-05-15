@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using obj2022_tp2_web_api.DataServices;
 using obj2022_tp2_web_api.Models.Dtos;
 
 namespace obj2022_tp2_web_api.Controllers
@@ -18,6 +17,7 @@ namespace obj2022_tp2_web_api.Controllers
             [FromBody] ControlDto newControls
         )
         {
+
             return true;
         }
     }

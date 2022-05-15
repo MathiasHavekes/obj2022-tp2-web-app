@@ -1,22 +1,26 @@
 <mat-card
-  *ngIf="alertDetails"
+  *ngIf="alertDetails && (isTooMuchOpen || isNotEnoughOpen)"
   class="alert-container"
 >
   <mat-card-header>
     <mat-card-title>
       Alerte !
     </mat-card-title>
-    <mat-card-subtitle>
+    <mat-card-subtitle
+      *ngIf="isTooMuchOpen"
+    >
       La porte est ouverte plus que nécessaire :
     </mat-card-subtitle>
-    <mat-card-subtitle>
+    <mat-card-subtitle
+      *ngIf="isNotEnoughOpen"
+    >
       La porte n'est pas assez ouverte :
     </mat-card-subtitle>
     <mat-card-subtitle>
-      Ouverture actuel : <b>80 %</b>
+      Ouverture actuel : <b>{{ alertDetails.actualPercentage }} %</b>
     </mat-card-subtitle>
     <mat-card-subtitle>
-      Ouverture attendu : <b>50 %</b>
+      Ouverture attendu : <b>{{ alertDetails.expectedPercentage }} %</b>
     </mat-card-subtitle>
   </mat-card-header>
 </mat-card>

@@ -36,6 +36,7 @@ namespace obj2022_tp2_web_api.Controllers
                 Speed = motorStatus.Speed,
                 Distance = distanceTemperature.Distance
             };
+
             return info;
         }
     }
