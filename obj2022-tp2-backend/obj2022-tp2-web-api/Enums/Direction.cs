@@ -2,8 +2,8 @@
 {
     public enum Direction
     {
-        Stop,
-        Up,
-        Down,
+        ARRET,
+        Haut,
+        Bas,
     }
 }

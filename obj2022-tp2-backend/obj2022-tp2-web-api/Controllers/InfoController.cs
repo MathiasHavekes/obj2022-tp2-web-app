@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using obj2022_tp2_web_api.Enums;
+using obj2022_tp2_web_api.DataServices;
 using obj2022_tp2_web_api.Models.Dtos;
 
 namespace obj2022_tp2_web_api.Controllers
@@ -8,20 +8,35 @@ namespace obj2022_tp2_web_api.Controllers
     [Route("tomato")]
     public class InfoController : ControllerBase
     {
+        ConstantsDataService constantsDS;
+        DistanceTemperatureDataService distanceTemperatureDS;
+        MotorStatusDataService motorStatusDS;
+
         public InfoController()
         {
+            constantsDS = new ConstantsDataService();
+            distanceTemperatureDS = new DistanceTemperatureDataService();
+            motorStatusDS = new MotorStatusDataService();
         }
 
         [HttpGet("info/details")]
-        public InfoDto GetChartDetails()
+        public async Task<InfoDto> GetChartDetails()
         {
-            var test = new InfoDto();
-            test.Percentage = 100;
-            test.Temperature = 62;
-            test.Direction = Direction.Down;
-            test.EventDate = DateTime.Now;
+            var constant = await constantsDS.GetLastConstantEntryAsync();
+            var distanceTemperature = await distanceTemperatureDS.GetLastDistanceTemperatureEntryAsync();
+            var motorStatus = await motorStatusDS.GetLastMotorStatusEntryAsync();
 
-            return test;
+            var info = new InfoDto()
+            {
+                Percentage = Utils.CastValue((int) distanceTemperature.Distance, 0, 100, (int) constant.MinDistance, (int) constant.MaxDistance),
+                Temperature = distanceTemperature.Temperature,
+                Direction = motorStatus.Direction,
+                EventDate = motorStatus.EventDate,
+                State = motorStatus.State,
+                Speed = motorStatus.Speed,
+                Distance = distanceTemperature.Distance
+            };
+            return info;
         }
     }
 }
