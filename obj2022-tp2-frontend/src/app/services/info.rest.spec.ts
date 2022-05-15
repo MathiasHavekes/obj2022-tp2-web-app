@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { InfoService } from './info.rest';
+import { InfoRest } from './info.rest';
 
-describe('InfoService', () => {
-  let service: InfoService;
+describe('InfoRest', () => {
+  let service: InfoRest;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(InfoService);
+    service = TestBed.inject(InfoRest);
   });
 
   it('should be created', () => {

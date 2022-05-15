@@ -1,1 +1,64 @@
-<p>controls works!</p>
+<mat-card
+  class="controls-container"
+>
+  <mat-card-title>
+    Contrôle
+  </mat-card-title>
+
+  <mat-card-subtitle>
+    Changez de mode ici
+  </mat-card-subtitle>
+
+  <mat-list>
+    <mat-list-item class="button">
+      <button
+        mat-raised-button
+        (click)="setNewControlState(controlStateEnum.automatic)"
+      >
+        {{ getStateName(controlStateEnum.automatic) }}
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <div class="target-form">
+        <button
+          mat-raised-button
+          (click)="setNewControlState(controlStateEnum.manuel)"
+        >
+          {{ getStateName(controlStateEnum.manuel) }}
+        </button>
+
+        <mat-form-field>
+          <input
+            id="target-input"
+            matInput 
+            placeholder="Ouverture (en %)"
+            [value]="undefined"
+            type="number"
+            minlength="0"
+            maxlength="3"
+            (input)="setNewControlState($event)"
+          >
+        </mat-form-field>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item class="button">
+      <button
+        mat-raised-button
+        (click)="setNewControlState(controlStateEnum.openDoor)"
+      >
+        {{ getStateName(controlStateEnum.openDoor) }}
+      </button>
+    </mat-list-item>
+
+    <mat-list-item class="button">
+      <button 
+        mat-raised-button
+        (click)="setNewControlState(controlStateEnum.closeDoor)"
+      >
+        {{ getStateName(controlStateEnum.closeDoor) }}
+      </button>
+    </mat-list-item>
+   </mat-list>
+</mat-card>

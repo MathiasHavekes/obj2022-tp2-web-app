@@ -1,1 +1,69 @@
-<p>info works!</p>
+<mat-card
+  *ngIf="infoDetails"
+  class="info-container"
+>
+  <mat-card-title>
+    Informations
+  </mat-card-title>
+
+  <mat-card-subtitle>
+    Porte d'aération de la serre
+  </mat-card-subtitle>
+
+  <mat-list>
+    <mat-list-item>
+      <div class="item">
+        <span>
+          Température :
+        </span> 
+        <span>
+          {{ infoDetails.temperature }}
+        </span>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item>
+      <div class="item">
+        <span>
+          Distance d'ouverture :
+        </span> 
+        <span>
+          {{ infoDetails.distance }}
+        </span>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item>
+      <div class="item">
+        <span>
+          Mode :
+        </span> 
+        <span>
+          {{ getStateName(infoDetails.state) }}
+        </span>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item>
+      <div class="item">
+        <span>
+          Vitesse du moteur :
+        </span> 
+        <span>
+          {{ infoDetails.speed }}
+        </span>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item>
+      <div class="item">
+        <span>
+          Direction du moteur :
+        </span> 
+        <span>
+          {{ getDirectionName(infoDetails.direction) }}
+        </span>
+      </div>
+    </mat-list-item>
+   </mat-list>
+</mat-card>

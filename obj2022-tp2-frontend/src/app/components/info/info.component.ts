@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ControlState } from 'src/app/models/enums/control-state.enum';
+import { Direction } from 'src/app/models/enums/direction.enum';
+import { InfoDto } from 'src/app/models/infoDto.model';
+import { getDirectionName, getStateName } from 'src/app/shared/util.static';
+import { InfoService } from './info.service';
 
 @Component({
   selector: 'app-info',
@@ -6,10 +11,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
+  infoDetails: InfoDto | undefined;
 
-  constructor() { }
+  constructor(
+    private readonly infoService: InfoService,
+  ) { }
 
   ngOnInit(): void {
+    this.infoService
+      .getInfoDetails()
+      .subscribe(result => 
+        this.infoDetails = result);
   }
 
+  getStateName(state: ControlState) {
+    return getStateName(state);
+  }
+
+  getDirectionName(direction: Direction) {
+    return getDirectionName(direction)
+  }
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { ChartFilters } from 'src/app/models/date-filter.model';
+import { ChartDto } from 'src/app/models/chartDto.model';
+import { ChartService } from './chart.service';
 
 @Component({
   selector: 'app-chart',
@@ -11,10 +14,32 @@ export class ChartComponent implements OnInit {
   updateFlag: boolean = false;
 
   chartOptions: Highcharts.Options | undefined;
+
+  chartDetails: ChartDto[] = [];
+
+  chartFilters = new ChartFilters(
+    new Date(),
+    new Date(),
+  ) 
   
-  constructor() { }
+  constructor(
+    private readonly chartService: ChartService,
+  ) { }
 
   ngOnInit(): void {
+    this.loadChartDetails();
+  }
+
+  private loadChartDetails() {
+    this.chartService
+      .getChartDetails(this.chartFilters)
+      .subscribe(response => {
+        this.chartDetails = response;
+        this.buildChartOptions();
+      });
+  }
+
+  private buildChartOptions() {
     this.chartOptions = {   
       chart: {
          type: 'spline',
@@ -24,11 +49,10 @@ export class ChartComponent implements OnInit {
          text: 'Ouverture',
       },
       xAxis: {
-        categories: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+        categories: this.chartDetails.map(c => c.eventDate.toString()),
       },
       yAxis: [
-        {          
+        {
           title:{
             text: 'Temperature °C',
           },
@@ -49,7 +73,7 @@ export class ChartComponent implements OnInit {
           name: 'Temperature',
           type: 'line',
           yAxis: 0,
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,26.5, 23.3, 18.3, 13.9, 9.6],
+          data: this.chartDetails.map(c => c.temperature),
           tooltip: {
             valueSuffix:" °C",
           },
@@ -58,7 +82,7 @@ export class ChartComponent implements OnInit {
           name: 'Pourcentage d\'ouverture',
           type: 'line',
           yAxis: 1,
-          data: [10, 30, 40, 30, 20, 100, 90],
+          data: this.chartDetails.map(c => c.percentage),
           tooltip: {
             valueSuffix:" %",
           },

@@ -1,10 +1,12 @@
 import { ControlState } from "./enums/control-state.enum";
 import { Direction } from "./enums/direction.enum";
 
-export interface MotorStatus {
+export interface InfoDto {
+  temperature: number,
+  distance: number,
   state: ControlState,
-  target: number,
-  direction: Direction,
   speed: number,
-  eventDate: Date,
+  direction: Direction,
+  percentage: number,
+  eventDate: string,
 }

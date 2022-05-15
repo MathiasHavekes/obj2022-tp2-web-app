@@ -9,7 +9,11 @@ import { InfoComponent } from './components/info/info.component';
 
 import { HighchartsChartModule } from 'highcharts-angular'
 
-import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,9 +24,13 @@ import {MatCardModule} from '@angular/material/card';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     HighchartsChartModule,
     NoopAnimationsModule,
+    MatButtonModule,
     MatCardModule,
+    MatInputModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
