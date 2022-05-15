@@ -14,28 +14,6 @@
     <mat-list-item>
       <div class="item">
         <span>
-          Température :
-        </span> 
-        <span>
-          {{ infoDetails.temperature }}
-        </span>
-      </div>
-    </mat-list-item>
-
-    <mat-list-item>
-      <div class="item">
-        <span>
-          Distance d'ouverture :
-        </span> 
-        <span>
-          {{ infoDetails.distance }}
-        </span>
-      </div>
-    </mat-list-item>
-
-    <mat-list-item>
-      <div class="item">
-        <span>
           Mode :
         </span> 
         <span>
@@ -65,5 +43,36 @@
         </span>
       </div>
     </mat-list-item>
+
+    <mat-list-item>
+      <div class="item">
+        <span>
+          Température :
+        </span> 
+        <span>
+          {{ infoDetails.temperature }}
+        </span>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item>
+      <div class="item">
+        <span>
+          Distance d'ouverture :
+        </span> 
+        <span>
+          {{ infoDetails.distance }}
+        </span>
+      </div>
+    </mat-list-item>
    </mat-list>
+
+   <h2 class="percentage">{{ infoDetails.percentage }}  %</h2>
+
+   <mat-progress-bar
+      class="example-margin"
+      [mode]="'determinate'"
+      [value]="infoDetails.percentage"
+      [bufferValue]="progressBarBuffer"
+    ></mat-progress-bar>
 </mat-card>

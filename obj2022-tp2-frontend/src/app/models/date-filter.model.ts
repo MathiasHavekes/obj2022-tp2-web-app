@@ -13,11 +13,11 @@ export class ChartFilters implements DateRange {
   }
 
   topParam = () => {
-    if (!(this.start && this.end)) return;
+    if(!(this.start && this.end)) return;
 
     return {
       start: this.start.toDateString(),
       end: this.end.toDateString(),
-    }
+    };
   }
 }

@@ -2,7 +2,7 @@
   class="controls-container"
 >
   <mat-card-title>
-    Contrôle
+    Contrôles
   </mat-card-title>
 
   <mat-card-subtitle>
@@ -30,15 +30,37 @@
 
         <mat-form-field>
           <input
-            id="target-input"
-            matInput 
-            placeholder="Ouverture (en %)"
-            [value]="undefined"
+            matInput
             type="number"
-            minlength="0"
-            maxlength="3"
-            (input)="setNewControlState($event)"
+            placeholder="Ouverture (en %)"
+            [(ngModel)]="selectedControls.target"
+            [formControl]="targetFormControl"
+            [errorStateMatcher]="matcher"
           >
+          <mat-error 
+            *ngIf="targetFormControl.hasError('min') &&
+            !targetFormControl.hasError('required')"
+          >
+            Valeur trop petite
+          </mat-error>
+          <mat-error 
+            *ngIf="targetFormControl.hasError('max') && 
+            !targetFormControl.hasError('required')"
+          >
+            Valeur trop grande
+          </mat-error>
+          <mat-error 
+            *ngIf="targetFormControl.hasError('pattern') &&
+            !targetFormControl.hasError('required')"
+          >
+            Champ requiert des nombres
+          </mat-error>
+          <mat-error 
+            *ngIf="targetFormControl.hasError('required') &&
+            selectedControls.state === controlStateEnum.manuel"
+          >
+            Champ obligatoire
+          </mat-error>
         </mat-form-field>
       </div>
     </mat-list-item>
