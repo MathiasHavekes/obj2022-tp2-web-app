@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiRoutes } from '../constants/api-routes.constants';
-import { ChartFilters } from '../models/date-filter.model';
+import { ChartFilters } from '../models/filters/date-filter.model';
 import { ChartDto } from '../models/chartDto.model';
 
 @Injectable({

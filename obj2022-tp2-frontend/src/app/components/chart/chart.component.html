@@ -1,54 +1,55 @@
-<mat-card 
-  *ngIf="chartOptions"
-  class="chart-container"
->
-  <mat-card-title>
-    Graphique
-  </mat-card-title>
+<mat-card class="chart-container">
+  <mat-card-header>
+    <mat-card-title>
+      Graphique
+    </mat-card-title>
+  
+    <mat-card-subtitle>
+      Température et pourcentage d'ouverture en fonction du temps
+    </mat-card-subtitle>
+  </mat-card-header>
 
-  <mat-card-subtitle>
-    Température et pourcentage d'ouverture en fonction du temps
-  </mat-card-subtitle>
-
-  <div class="date-range-picker">
-    <h3 class="filter-title">Filtres :</h3>
-    <mat-form-field 
-      class="date-range-element"
-    >
-      <input
-        matInput
-        [min]="startMinDate"
-        [max]="startMaxDate"
-        [matDatepicker]="startPicker"
-        placeholder="Date de début"
-        (dateChange)="setNewStartDate($event)"
+  <div *ngIf="chartOptions">
+    <div class="date-range-picker">
+      <h3 class="filter-title">Filtres :</h3>
+      <mat-form-field 
+        class="date-range-element"
       >
-      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-      <mat-datepicker #startPicker></mat-datepicker>
-    </mat-form-field>
+        <input
+          matInput
+          [min]="startMinDate"
+          [max]="startMaxDate"
+          [matDatepicker]="startPicker"
+          placeholder="Date de début"
+          (dateChange)="setNewStartDate($event)"
+        >
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
 
-    <mat-form-field 
-      class="date-range-element"
-    >
-      <input
-        matInput
-        [min]="endMinDate"
-        [max]="endMaxDate"
-        [matDatepicker]="endPicker"
-        placeholder="Date de fin"
-        (dateChange)="setNewStartDate($event)"
+      <mat-form-field 
+        class="date-range-element"
       >
-      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-      <mat-datepicker #endPicker></mat-datepicker>
-    </mat-form-field>
+        <input
+          matInput
+          [min]="endMinDate"
+          [max]="endMaxDate"
+          [matDatepicker]="endPicker"
+          placeholder="Date de fin"
+          (dateChange)="setNewStartDate($event)"
+        >
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <mat-card-content>
+      <highcharts-chart
+        class="chart"
+        [Highcharts]="Highcharts"
+        [options]="chartOptions"
+        [(update)]="updateFlag"
+      ></highcharts-chart>
+    </mat-card-content>
   </div>
-
-  <mat-card-content>
-    <highcharts-chart
-      class="chart"
-      [Highcharts]="Highcharts"
-      [options]="chartOptions"
-      [(update)]="updateFlag"
-    ></highcharts-chart>
-  </mat-card-content>
 </mat-card>

@@ -12,7 +12,6 @@ namespace obj2022_tp2_web_api.Models
         public Direction Direction { get; set; }
         [JsonProperty("speed")]
         public double Speed { get; set; }
-
         [JsonProperty("eventProcessedUtcTime")]
         public DateTime EventDate { get; set; }
     }

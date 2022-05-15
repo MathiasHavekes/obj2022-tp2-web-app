@@ -1,71 +1,71 @@
-<mat-card
-  *ngIf="infoDetails"
-  class="info-container"
->
-  <mat-card-title>
-    Informations
-  </mat-card-title>
+<mat-card class="info-container">
+  <mat-card-header>
+    <mat-card-title>
+      Informations
+    </mat-card-title>
 
-  <mat-card-subtitle>
-    Porte d'aération de la serre
-  </mat-card-subtitle>
+    <mat-card-subtitle>
+      Porte d'aération de la serre
+    </mat-card-subtitle>
+  </mat-card-header>
 
-  <mat-list>
-    <mat-list-item>
-      <div class="item">
-        <span>
-          Mode :
-        </span> 
-        <span>
-          {{ getStateName(infoDetails.state) }}
-        </span>
-      </div>
-    </mat-list-item>
+  <div *ngIf="infoDetails">
+    <mat-list>
+      <mat-list-item>
+        <div class="item">
+          <span>
+            Mode :
+          </span> 
+          <span>
+            {{ getStateName(infoDetails.state) }}
+          </span>
+        </div>
+      </mat-list-item>
 
-    <mat-list-item>
-      <div class="item">
-        <span>
-          Vitesse du moteur :
-        </span> 
-        <span>
-          {{ infoDetails.speed }}
-        </span>
-      </div>
-    </mat-list-item>
+      <mat-list-item>
+        <div class="item">
+          <span>
+            Vitesse du moteur :
+          </span> 
+          <span>
+            {{ infoDetails.speed }}
+          </span>
+        </div>
+      </mat-list-item>
 
-    <mat-list-item>
-      <div class="item">
-        <span>
-          Direction du moteur :
-        </span> 
-        <span>
-          {{ getDirectionName(infoDetails.direction) }}
-        </span>
-      </div>
-    </mat-list-item>
+      <mat-list-item>
+        <div class="item">
+          <span>
+            Direction du moteur :
+          </span> 
+          <span>
+            {{ getDirectionName(infoDetails.direction) }}
+          </span>
+        </div>
+      </mat-list-item>
 
-    <mat-list-item>
-      <div class="item">
-        <span>
-          Température :
-        </span> 
-        <span>
-          {{ infoDetails.temperature }}
-        </span>
-      </div>
-    </mat-list-item>
+      <mat-list-item>
+        <div class="item">
+          <span>
+            Température :
+          </span> 
+          <span>
+            {{ infoDetails.temperature }}
+          </span>
+        </div>
+      </mat-list-item>
 
-    <mat-list-item>
-      <div class="item">
-        <span>
-          Distance d'ouverture :
-        </span> 
-        <span>
-          {{ infoDetails.distance }}
-        </span>
-      </div>
-    </mat-list-item>
-   </mat-list>
+      <mat-list-item>
+        <div class="item">
+          <span>
+            Distance d'ouverture :
+          </span> 
+          <span>
+            {{ infoDetails.distance }}
+          </span>
+        </div>
+      </mat-list-item>
+    </mat-list>
 
    <h2 class="percentage">{{ infoDetails.percentage }}  %</h2>
 
@@ -75,4 +75,5 @@
       [value]="infoDetails.percentage"
       [bufferValue]="progressBarBuffer"
     ></mat-progress-bar>
+  </div>
 </mat-card>
