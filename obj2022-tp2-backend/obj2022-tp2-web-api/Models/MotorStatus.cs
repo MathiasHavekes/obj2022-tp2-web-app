@@ -10,7 +10,6 @@ namespace obj2022_tp2_web_api.Models
         public double Target { get; set; }
         public Direction Direction { get; set; }
         public double Speed { get; set; }
-
         [JsonProperty("eventProcessedUtcTime")]
         public DateTime EventDate { get; set; }
     }
