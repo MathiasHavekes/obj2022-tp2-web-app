@@ -18,13 +18,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
     ControlsComponent,
-    InfoComponent
+    InfoComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

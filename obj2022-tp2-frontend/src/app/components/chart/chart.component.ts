@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { ChartFilters } from 'src/app/models/date-filter.model';
+import { ChartFilters } from 'src/app/models/filters/date-filter.model';
 import { ChartDto } from 'src/app/models/chartDto.model';
 import { ChartService } from './chart.service';
 
